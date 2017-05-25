@@ -99,7 +99,7 @@ class AStar():
             if i <= min(self.f_values):
                 value = i
                 index = coordinate 
-                #  try and put an error here if there are no more neighbors 
+                
         self.x = self.neighbors[index][0]        
         self.y = self.neighbors[index][1]
         
