@@ -87,7 +87,7 @@ class AStar():
             g_value = (x_distance + y_distance)
             g_values.append(g_value)
         
-        #  add g_value and h_value 
+        #  add g_value and h_value to calculate f_value 
         self.f_values = [h + g for h, g in zip(h_values, g_values)]
         self.path()
               
