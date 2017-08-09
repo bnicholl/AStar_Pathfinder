@@ -40,7 +40,7 @@ class AStar():
         self.neighbor()
    
     def neighbor(self):
-        #  if x and y == goal_x and goal_y, algo is complete
+        """ if x and y == goal_x and goal_y, algo is complete """
         if self.x == self.goal_x and self.y == self.goal_y:
             print('your done')
             return 'your done'
@@ -48,8 +48,9 @@ class AStar():
         """ sets the x and y coordinates to 1 so they are not revisited """
         self.grid[self.x][self.y] = 1 
         
-        """ the below if statements give you the coordinates of the neighbors that have a value of 0 """            
-        if self.x > 0:  #  if X will be on the grid if it moves UP 1 node
+        """ the below if statements give you the coordinates of the neighbors that have a value of 0 """  
+        """ if X will be on the grid if it moves UP 1 node """
+        if self.x > 0:  
             if self.grid[self.x-1] [self.y] == 0:
                 self.neighbors.append([self.x - 1, self.y]) 
                 
