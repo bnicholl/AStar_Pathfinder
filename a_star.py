@@ -45,53 +45,55 @@ class AStar():
             print('your done')
             return 'your done'
         
-        #  sets the x and y coordinates to 1 so they are not revisited
+        """ sets the x and y coordinates to 1 so they are not revisited """
         self.grid[self.x][self.y] = 1 
         
-        #  the below if statements give you the coordinates of 
-        #  the neighbors that have a value of 0            
+        """ the below if statements give you the coordinates of the neighbors that have a value of 0 """            
         if self.x > 0:  #  if X will be on the grid if it moves UP 1 node
             if self.grid[self.x-1] [self.y] == 0:
-                self.neighbors.append([self.x - 1, self.y])  
+                self.neighbors.append([self.x - 1, self.y]) 
                 
-        if self.x < self.grid.shape[0] - 1:  #  if X will be on the grid if it moves DOWN 1 node
+        """ if X will be on the grid if it moves DOWN 1 node """        
+        if self.x < self.grid.shape[0] - 1:  
             if self.grid[self.x+1][self.y] == 0: 
                 self.neighbors.append([self.x+1,self.y]) 
                 
-        if self.y > 0: #  If Y will be on grid if it moves LEFT 1 node
+        """ If Y will be on grid if it moves LEFT 1 node """        
+        if self.y > 0:  
             if self.grid[self.x][self.y - 1] == 0:
                 self.neighbors.append([self.x, self.y - 1]) #  
         
-        if self.y < self.grid.shape[1] - 1: #  If Y will be on grid if it moves RIGHT 1 node
+        """ If Y will be on grid if it moves RIGHT 1 node """
+        if self.y < self.grid.shape[1] - 1:  
             if self.grid[self.x][self.y + 1] == 0:
                 self.neighbors.append([self.x, self.y + 1]) 
                 
         self.f_value()
        
-    #  this method gives you the f_value off all the neighbors    
+    """ this method gives you the f_value off all the neighbors """    
     def f_value(self):
         h_values = []
         g_values = []  
         
-        #  calculate distance from the neighboring X, Y to end X, Y value using Manhattan distance 
+        """ calculate distance from the neighboring X, Y to end X, Y value using Manhattan distance """ 
         for i in self.neighbors:     
             x_distance = abs(i[0] - self.goal_x)  
             y_distance = abs(i[1] - self.goal_y)  
             h_value = (x_distance + y_distance)
             h_values.append(h_value)
         
-        #  calculate distance from the neighboring X, Y to the initial X, Y values   
+        """ calculate distance from the neighboring X, Y to the initial X, Y values """  
         for i in self.neighbors:
             x_distance = abs(i[0] - self.initial_x)  
             y_distance = abs(i[1] - self.initial_y)
             g_value = (x_distance + y_distance)
             g_values.append(g_value)
         
-        #  add g_value and h_value to calculate f_value 
+        """ add g_value and h_value to calculate f_value """
         self.f_values = [h + g for h, g in zip(h_values, g_values)]
         self.path()
               
-    #  gets the lowest f_value, then pops that f_value and coresponding neighbor
+    """ gets the lowest f_value, then pops that f_value and coresponding neighbor """
     #  the neighbor always has the same index as the f_values
     def path(self):
                
